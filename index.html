@@ -1,0 +1,58 @@
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simulador – Qual Plano é Ideal?</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Guia de Decisão: Qual Plano é Ideal para Você?</h1>
+<p>Simulador educativo para apoiar uma escolha consciente</p>
+</header>
+
+
+<section>
+<h2>1. Seu momento atual</h2>
+<div class="options">
+<label><input type="checkbox" data-weight="2"> Tenho dependentes</label>
+<label><input type="checkbox" data-weight="1"> Minha renda é variável</label>
+<label><input type="checkbox" data-weight="2"> Busco previsibilidade financeira</label>
+<label><input type="checkbox" data-weight="1"> Posso lidar com custos inesperados</label>
+</div>
+</section>
+
+
+<section>
+<h2>2. Frequência de uso</h2>
+<div class="options">
+<label><input type="radio" name="uso" value="1"> Raramente</label>
+<label><input type="radio" name="uso" value="2"> Algumas vezes ao ano</label>
+<label><input type="radio" name="uso" value="3"> Mensalmente</label>
+<label><input type="radio" name="uso" value="4"> Com muita frequência</label>
+</div>
+</section>
+
+
+<section>
+<h2>3. Preferências financeiras</h2>
+<div class="options">
+<label><input type="radio" name="perfil" value="1"> Prefiro pagar menos todo mês</label>
+<label><input type="radio" name="perfil" value="3"> Aceito pagar mais por segurança</label>
+</div>
+
+
+<button class="btn" onclick="calcularResultado()">Ver resultado</button>
+</section>
+
+
+<footer>
+<p>Este simulador é educativo e não substitui uma análise personalizada.</p>
+</footer>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

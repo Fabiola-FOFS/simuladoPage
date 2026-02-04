@@ -1,0 +1,31 @@
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resultado do Simulador</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="container">
+<section id="resultado"></section>
+</div>
+
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const perfil = params.get('perfil');
+const container = document.getElementById('resultado');
+
+
+if (perfil === 'basico') {
+container.innerHTML = '<h2>Plano Básico</h2><p>Você prioriza controle de custos e baixo uso. Ideal para quem quer economia com planejamento.</p>';
+} else if (perfil === 'intermediario') {
+container.innerHTML = '<h2>Plano Intermediário</h2><p>Você busca equilíbrio entre custo e segurança, evitando surpresas no orçamento.</p>';
+} else if (perfil === 'completo') {
+container.innerHTML = '<h2>Plano Completo</h2><p>Você valoriza tranquilidade, cobertura ampla e previsibilidade mesmo em imprevistos.</p>';
+} else {
+container.innerHTML = '<h2>Resultado não identificado</h2>';
+}
+</script>
+</body>
+</html>
