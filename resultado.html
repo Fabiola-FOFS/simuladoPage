@@ -28,5 +28,15 @@ container.innerHTML = '<h2>Resultado não identificado</h2>';
 }
 </script>
 <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/85801bad-5edb-4fe2-bd92-24ac5b8aa417-loader.js" ></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const perfil = params.get('perfil');
+
+  if (perfil) {
+    fetch('https://fofs.app.n8n.cloud/webhook-test/simulador-resultado?perfil=' + perfil)
+      .then(() => console.log('Webhook enviado:', perfil))
+      .catch(err => console.error('Erro webhook', err));
+  }
+</script>
 </body>
 </html>
