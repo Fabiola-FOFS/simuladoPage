@@ -22,4 +22,12 @@ window.location.href = 'resultado.html?perfil=intermediario';
 } else {
 window.location.href = 'resultado.html?perfil=completo';
 }
+window.location.href = `resultado.html?perfil=${perfilFinal}`;
+
+//webhook para enviar resultado para n8n 
+const perfilFinal = 'basico'; // ou intermediario / completo
+const emailLead = document.getElementById('email').value;
+
+fetch('https://SEU-WORKSPACE.n8n.cloud/webhook/simulador-resultado?perfil=' + perfilFinal + '&email=' + encodeURIComponent(emailLead));
+
 }
