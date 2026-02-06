@@ -30,7 +30,7 @@ function calcularResultado() {
 
   // Enviar dados para o n8n
   fetch(
-    'https://SEU-WORKSPACE.n8n.cloud/webhook/simulador-resultado' +
+    'https://fofs.app.n8n.cloud/webhook-test/simulador-resultado' +
     '?perfil=' + perfilFinal +
     '&email=' + encodeURIComponent(emailLead)
   )
