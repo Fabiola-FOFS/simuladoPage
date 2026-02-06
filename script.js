@@ -1,33 +1,42 @@
 function calcularResultado() {
-let score = 0;
+  let score = 0;
 
+  // Checkboxes com peso
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+    score += parseInt(cb.dataset.weight || 0);
+  });
 
-document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-score += parseInt(cb.dataset.weight);
-});
+  // Radios
+  const uso = document.querySelector('input[name="uso"]:checked');
+  const perfilRadio = document.querySelector('input[name="perfil"]:checked');
 
+  if (uso) score += parseInt(uso.value);
+  if (perfilRadio) score += parseInt(perfilRadio.value);
 
-const uso = document.querySelector('input[name="uso"]:checked');
-const perfil = document.querySelector('input[name="perfil"]:checked');
+  // Definir perfil final
+  let perfilFinal = '';
 
+  if (score <= 4) {
+    perfilFinal = 'basico';
+  } else if (score <= 7) {
+    perfilFinal = 'intermediario';
+  } else {
+    perfilFinal = 'completo';
+  }
 
-if (uso) score += parseInt(uso.value);
-if (perfil) score += parseInt(perfil.value);
+  // Captura do e-mail (se existir)
+  const emailInput = document.getElementById('email');
+  const emailLead = emailInput ? emailInput.value : '';
 
-
-if (score <= 4) {
-window.location.href = 'resultado.html?perfil=basico';
-} else if (score <= 7) {
-window.location.href = 'resultado.html?perfil=intermediario';
-} else {
-window.location.href = 'resultado.html?perfil=completo';
-}
-window.location.href = `resultado.html?perfil=${perfilFinal}`;
-
-//webhook para enviar resultado para n8n 
-const perfilFinal = 'basico'; // ou intermediario / completo
-const emailLead = document.getElementById('email').value;
-
-fetch('https://SEU-WORKSPACE.n8n.cloud/webhook/simulador-resultado?perfil=' + perfilFinal + '&email=' + encodeURIComponent(emailLead));
-
+  // Enviar dados para o n8n
+  fetch(
+    'https://SEU-WORKSPACE.n8n.cloud/webhook/simulador-resultado' +
+    '?perfil=' + perfilFinal +
+    '&email=' + encodeURIComponent(emailLead)
+  )
+  .catch(err => console.error('Erro ao enviar para n8n:', err))
+  .finally(() => {
+    // Redireciona SOMENTE depois
+    window.location.href = `resultado.html?perfil=${perfilFinal}`;
+  });
 }
