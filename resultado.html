@@ -32,11 +32,14 @@ container.innerHTML = '<h2>Resultado não identificado</h2>';
   const params = new URLSearchParams(window.location.search);
   const perfil = params.get('perfil');
 
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const perfil = params.get('perfil');
+
   if (perfil) {
-    fetch('https://fofs.app.n8n.cloud/webhook-test/simulador-resultado?perfil=' + perfil)
-      .then(() => console.log('Webhook enviado:', perfil))
-      .catch(err => console.error('Erro webhook', err));
+    fetch('https://fofs.app.n8n.cloud/webhook-test/resultado-simulador' + perfil);
   }
+</script>
 </script>
 </body>
 </html>

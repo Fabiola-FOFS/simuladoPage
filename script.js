@@ -28,12 +28,7 @@ function calcularResultado() {
   const emailInput = document.getElementById('email');
   const emailLead = emailInput ? emailInput.value : '';
 
-  // Enviar dados para o n8n
-  fetch(
-    'https://fofs.app.n8n.cloud/webhook-test/simulador-resultado' +
-    '?perfil=' + perfilFinal +
-    '&email=' + encodeURIComponent(emailLead)
-  )
+
   .catch(err => console.error('Erro ao enviar para n8n:', err))
   .finally(() => {
     // Redireciona SOMENTE depois
