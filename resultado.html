@@ -1,48 +1,70 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Resultado do Simulador</title>
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resultado do Simulador</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-<div class="container">
-<section id="resultado"></section>
-</div>
-
-
-<script>
-const params = new URLSearchParams(window.location.search);
-const perfil = params.get('perfil');
-const container = document.getElementById('resultado');
-
-
-if (perfil === 'basico') {
-container.innerHTML = '<h2>Plano Básico</h2><p>Você prioriza controle de custos e baixo uso. Ideal para quem quer economia com planejamento.</p>';
-} else if (perfil === 'intermediario') {
-container.innerHTML = '<h2>Plano Intermediário</h2><p>Você busca equilíbrio entre custo e segurança, evitando surpresas no orçamento.</p>';
-} else if (perfil === 'completo') {
-container.innerHTML = '<h2>Plano Completo</h2><p>Você valoriza tranquilidade, cobertura ampla e previsibilidade mesmo em imprevistos.</p>';
-} else {
-container.innerHTML = '<h2>Resultado não identificado</h2>';
-}
-</script>
-<script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/85801bad-5edb-4fe2-bd92-24ac5b8aa417-loader.js" ></script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const perfil = params.get('perfil');
+  <div class="container">
+    <section id="resultado"></section>
+  </div>
 
   <script>
-  const params = new URLSearchParams(window.location.search);
-  const perfil = params.get('perfil');
+    // Captura parâmetros da URL
+    const params = new URLSearchParams(window.location.search);
+    const perfil = params.get('perfil');
+    const email = params.get('email');
 
-  if (perfil) {
-    fetch(
-      'https://fofs.app.n8n.cloud/webhook/resultado-simulador/?perfil=' + encodeURIComponent(perfil)
-    );
-  }
-</script>
-</script>
-</script>
+    const container = document.getElementById('resultado');
+
+    // Renderiza o resultado na tela
+    if (perfil === 'basico') {
+      container.innerHTML = `
+        <h2>Plano Básico</h2>
+        <p>
+          Você prioriza controle de custos e baixo uso.
+          Ideal para quem busca economia com planejamento.
+        </p>
+      `;
+    } else if (perfil === 'intermediario') {
+      container.innerHTML = `
+        <h2>Plano Intermediário</h2>
+        <p>
+          Você busca equilíbrio entre custo e segurança,
+          evitando surpresas no orçamento.
+        </p>
+      `;
+    } else if (perfil === 'completo') {
+      container.innerHTML = `
+        <h2>Plano Completo</h2>
+        <p>
+          Você valoriza tranquilidade, cobertura ampla
+          e previsibilidade mesmo em imprevistos.
+        </p>
+      `;
+    } else {
+      container.innerHTML = `
+        <h2>Resultado não identificado</h2>
+        <p>Não foi possível identificar seu perfil.</p>
+      `;
+    }
+
+    // 🔹 Webhook 2 – envia resultado para o n8n
+    if (perfil && email) {
+      fetch('https://fofs.app.n8n.cloud/webhook/resultado-simulador', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          perfil
+        })
+      });
+    }
+  </script>
 </body>
 </html>
