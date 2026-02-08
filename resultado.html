@@ -37,8 +37,11 @@ container.innerHTML = '<h2>Resultado não identificado</h2>';
   const perfil = params.get('perfil');
 
   if (perfil) {
-    fetch('https://fofs.app.n8n.cloud/webhook-test/resultado-simulador' + perfil);
+    fetch(
+      'https://fofs.app.n8n.cloud/webhook/resultado-simulador/?perfil=' + encodeURIComponent(perfil)
+    );
   }
+</script>
 </script>
 </script>
 </body>
