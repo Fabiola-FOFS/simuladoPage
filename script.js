@@ -28,6 +28,9 @@ function calcularResultado() {
   const emailInput = document.getElementById('email');
   const emailLead = emailInput ? emailInput.value : '';
 
+  console.log('Perfil final:', perfilFinal);
+alert('Redirecionando para: ' + perfilFinal);
+
   // Redirecionamento
   window.location.href = `resultado.html?perfil=${perfilFinal}`;
 }
