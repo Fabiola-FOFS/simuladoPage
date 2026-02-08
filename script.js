@@ -28,10 +28,6 @@ function calcularResultado() {
   const emailInput = document.getElementById('email');
   const emailLead = emailInput ? emailInput.value : '';
 
-
-  .catch(err => console.error('Erro ao enviar para n8n:', err))
-  .finally(() => {
-    // Redireciona SOMENTE depois
-    window.location.href = `resultado.html?perfil=${perfilFinal}`;
-  });
+  // Redirecionamento
+  window.location.href = `resultado.html?perfil=${perfilFinal}`;
 }
